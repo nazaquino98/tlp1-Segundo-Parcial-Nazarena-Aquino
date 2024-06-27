@@ -1,6 +1,7 @@
 //iniciar servidor
 const express = require("express")
 const db = require("./db.js")
+const idAutoincremento = require("./db.js")
 
 //crear servidor
 const app = express()
@@ -26,8 +27,8 @@ app.get("/productos/:id", (req, res) => {
 
 //crear producto
 app.post("/productos", (req, res) => {
-    const {id, nombre, cantidad, precio} = req.body
-    const nuevoProducto = db.push({"id": id, "nombre": String(nombre), "cantidad": parseInt(cantidad), "precio": parseFloat(precio)})
+    const {nombre, cantidad, precio} = req.body
+    const nuevoProducto = db.push({"nombre": String(nombre), "cantidad": parseInt(cantidad), "precio": parseFloat(precio)})
 
     res.json({message: "producto nuevo creado correctamente"})
 })
